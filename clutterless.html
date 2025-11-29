@@ -1,0 +1,466 @@
+<style>
+    .clutterless-container {
+        max-width: 970px;
+        align-items: center;
+        position: relative;
+        padding: 24px;
+        margin: 0 auto;
+        font-family: "Builder Sans", sans-serif;
+        color: white;
+    }
+
+    .clutterless-container h1 {
+        font-size: 32px;
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
+
+    .settings-wrapper {
+        display: flex;
+        gap: 20px;
+    }
+
+    .rbx-divider {
+        margin-top: 15px;
+        margin-bottom: 12px;
+    }
+
+    .sidebar-tabs {
+        width: 160px;
+        float: left;
+        background: #272930;
+        display: flex;
+        align-self: flex-start;
+        flex-direction: column;
+    }
+
+    .sidebar-tab {
+        padding: 12px 20px;
+        text-align: left;
+        background: transparent;
+        border: none;
+        color: #ddd;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        text-align: left;
+        border-left: 4px solid transparent;
+    }
+
+    .sidebar-tab:hover {
+        border-left: 4px solid #494D5A;
+    }
+
+    .sidebar-tab.active {
+        font-weight: 500;
+        border-left: 4px solid white;
+        color: white;
+    }
+
+    .tab-area {
+        flex: 1;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    .setting-block {
+        background: #272930;
+        padding: 20px 24px;
+        margin-bottom: 20px;
+        border-radius: 0px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .setting-title {
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .setting-description {
+        font-size: 14px;
+        color: #ccc;
+        margin-top: 4px;
+    }
+
+    /* Switch styling */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 46px;
+        height: 24px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0; left: 0;
+        right: 0; bottom: 0;
+        background-color: #444;
+        transition: 0.3s;
+        border-radius: 24px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.3s;
+        border-radius: 50%;
+    }
+
+    input:checked + .slider {
+        background-color: #335FFF;
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(22px);
+    }
+
+    ul li {
+        list-style-type: circle;
+    }
+
+    ul ul {
+        margin-left: 20px
+    }
+</style>
+
+
+<div class="clutterless-container">
+    <h1>Clutterless Roblox Settings</h1>
+
+    <div class="settings-wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar-tabs">
+            <button class="sidebar-tab active" data-tab="general">Advertisements</button>
+            <button class="sidebar-tab active" data-tab="homepage">Home Page</button>
+            <button class="sidebar-tab active" data-tab="games">Games / Experiences</button>
+
+            <button class="sidebar-tab" data-tab="wordtweaks">Word Tweaks</button>
+            <button class="sidebar-tab" data-tab="gametweaks">Game Page Tweaks</button>
+
+
+            <button class="sidebar-tab" data-tab="aboutus">About</button>
+            <button class="sidebar-tab" data-tab="updates">Update Log</button>
+            <button class="sidebar-tab" data-tab="contribute">Contribute</button>
+
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-area">
+            <div class="tab-content active" data-tab="general">
+                <div class="container-header"><h2>Advertisements</h2></div>
+                <div class="setting-block">
+                    <div class="setting-title">
+                        Stop Showing Advertisements
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-ads">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        Removes banner and sidebar ads from Roblox pages.
+                    </div>
+                </div>
+
+                <div class="setting-block">
+                    <div class="setting-title">
+                        Stop Showing Sponsored
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-sponsored">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        Removes the sponsored row from anywhere on roblox.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content active" data-tab="homepage">
+                <div class="container-header"><h2>Home Page</h2></div>
+                <div class="setting-block">
+                    <div class="setting-title">
+                        Stop Showing Today's Picks
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-todayspicks">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        Remove the rows for Today's Picks.
+                    </div>
+                </div>
+
+                <div class="setting-block">
+                    <div class="setting-title">
+                        Stop Showing Recommended For You
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-recommended">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        Removes the recommended for you rows.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" data-tab="wordtweaks">
+                <div class="container-header"><h2>Word Tweaks</h2></div>
+                <div class="setting-block">
+                    <div class="setting-title">
+                        Change "Charts" to "Games"
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-oldname-games">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        Restore the old name for experiences/charts.
+                    </div>
+                </div>
+
+                <div class="setting-block">
+                    <div class="setting-title">
+                        Change "Communities" to "Groups"
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-oldname-groups">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        Restore the old name for communities.
+                    </div>
+                </div>
+
+                <div class="setting-block">
+                    <div class="setting-title">
+                        Change "Marketplace" to "Catalog"
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-oldname-catalog">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        Restore the old name for marketplace.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" data-tab="games">
+                <div class="container-header"><h2>Games / Experiences</h2></div>
+                <div class="setting-block">
+                    <div class="setting-title">
+                        Blur Brainrot Games
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-blur-brainrot">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        Blurs games that include brainrot terminology in their titles.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" data-tab="gametweaks">
+                <div class="container-header"><h2>Game Page Tweaks</h2></div>
+                <div class="setting-block">
+                    <div class="setting-title">
+                        Restore Green Play Button 
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-oldcss-playbutton">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        Changes the blue play button back to the green button.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" data-tab="aboutus">
+                <div class="container-header"><h2>About</h2></div>
+                <div class="setting-block">
+                    <div class="setting-title">
+                        About Clutterless Roblox
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        Clutterless Roblox is an extension designed to remove all of the clutter roblox has been serving to the front page of users.
+                    </div>
+                    <br/>
+                    <div class="setting-description">
+                        This extension also includes many QoL (Quality Of Life) features to restore roblox back to what it used to be before they went hardcore cooperate mode.
+                    </div>
+                </div>
+
+                <div class="setting-block" style="border: 2px solid red; box-shadow: 0px 0px 20px red;">
+                    <div class="setting-title">
+                        Subject To Breaking
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        At any point ROBLOX can update their website elements. This may cause unexpected results and/or functionalilty loss.<br/><br/>
+                        I will always try to fix these issues as they occure, but I cannot guarantee those updates to be quick.
+                    </div>
+                </div>
+
+                <div class="setting-block">
+                    <div class="setting-title">
+                        Licensing
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        Clutterless Roblox is licensed under the MIT license.
+                    </div>
+                </div>
+
+                <div class="setting-block">
+                    <div class="setting-title">
+                        MIT License
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        Copyright (c) 2025 Preston<br/><br/>
+
+                        Permission is hereby granted, free of charge, to any person obtaining a copy
+                        of this software and associated documentation files (the "Software"), to deal
+                        in the Software without restriction, including without limitation the rights
+                        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                        copies of the Software, and to permit persons to whom the Software is
+                        furnished to do so, subject to the following conditions:<br/><br/>
+
+                        The above copyright notice and this permission notice shall be included in all
+                        copies or substantial portions of the Software.<br/><br/>
+
+                        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+                        SOFTWARE.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" data-tab="updates">
+                <div class="container-header"><h2>Update Log</h2></div>
+
+                <!-- VERSION 1.1.0 -->
+                <div class="setting-block">
+                    <div class="setting-title">
+                        Version 1.1.0
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        <ul>
+                        <li>Rewrote logic for detecting advertisements</li>
+                        <li>Added custom Clutterless Roblox settings menu</li>
+                        <li>Added Settings:
+                            <ul>
+                                <li>Stop Showing Advertisements</li>
+                                <li>Stop Showing Sponsored</li>
+                                <li>Stop Showing Today's Picks</li>
+                                <li>Stop Showing Recommended For You</li>
+                                <li>Blur Brainrot Games</li>
+                                <li>Change "Charts" to "Games"</li>
+                                <li>Change "Communities" to "Groups"</li>
+                                <li>Change "Marketplace" to "Catalog"</li>
+                                <li>Restore Green Play Button</li>
+                                <li>Debug Mode 😎</li>
+                            </ul>
+                        </li>
+                        <li>Added toggles for all settings</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- VERSION 1.0.0 -->
+                <div class="setting-block">
+                    <div class="setting-title">
+                        Version 1.0.0
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        <ul>
+                            <li>Automatically Remove Todays Picks</li>
+                            <li>Automatically Remove Recommended For You</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="tab-content" data-tab="contribute">
+                <div class="container-header"><h2>Contribute</h2></div>
+                <div class="setting-block">
+                    <div class="setting-title">
+                        Want to contribute?
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        Contributing to this project would mean the world to me!<br/><br/>
+
+                        Making this extension has been a blast and I would appreciate all the support 💝<br/><br/>
+
+                        <a href="https://github.com/wutpreston/Clutterless-Roblox" target="_blank" class="github-link" aria-label="GitHub">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.28 3.438 9.75 8.205 11.32.6.113.82-.26.82-.577 0-.285-.01-1.04-.016-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.388-1.333-1.757-1.333-1.757-1.09-.745.082-.73.082-.73 1.204.085 1.837 1.236 1.837 1.236 1.07 1.832 2.807 1.303 3.492.997.107-.776.42-1.303.763-1.602-2.665-.304-5.467-1.334-5.467-5.934 0-1.312.467-2.384 1.235-3.224-.123-.304-.535-1.528.117-3.184 0 0 1.008-.323 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 2.05.138 3 .405 2.29-1.553 3.297-1.23 3.297-1.23.653 1.656.24 2.88.117 3.184.77.84 1.234 1.912 1.234 3.224 0 4.61-2.807 5.625-5.48 5.92.43.37.823 1.102.823 2.222 0 1.604-.015 2.896-.015 3.29 0 .32.217.694.825.576C20.565 22.245 24 17.78 24 12.5 24 5.87 18.63.5 12 .5z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="setting-block" style="border: 2px solid orange; box-shadow: 0px 0px 20px orange;">
+                    <div class="setting-title">
+                        Debug Mode
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-debugger">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="rbx-divider"></div>
+                    <div class="setting-description">
+                        <b>WARNING</b> This may impact performance.<br/><br/>
+                        
+                        Turning this on will cause Clutterless Roblox to output everything it does into the Developer console.<br>
+                        This can be very memory intensive.<br/><br/>
+                        This should only be on if your trying to debug a problem.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

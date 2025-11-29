@@ -1,19 +1,27 @@
 {
-    "name": "Clutterless Roblox",
-    "description": "Clean up the clutter on the home screen and other un-needed elements.",
-    "version": "1.0",
-    "manifest_version": 3,
-    "content_scripts": [
-        {
-            "matches": ["https://*.roblox.com/*"],
-            "js": ["render.js"]
-        }
-    ],
-    "permissions": [],
-    "host_permissions": [
-        "https://*.roblox.com/*"
-    ],
-    "action": {
-      "default_icon": "icon.png"
+  "name": "Clutterless Roblox",
+  "version": "1.1",
+  "description": "Clean the roblox site from all of the clutter also includes Quality of Life features aswell.",
+  "manifest_version": 3,
+  "permissions": ["storage"],
+  "host_permissions": ["https://www.roblox.com/*"],
+  "content_scripts": [
+    {
+        "matches": ["https://www.roblox.com/*"],
+        "exclude_matches": ["https://www.roblox.com/clutterless"],
+        "js": ["debug.js", "addMenuButton.js", "pageActions.js", "consoleMessage.js"],
+        "run_at": "document_idle"
+    },
+    {
+        "matches": ["https://www.roblox.com/clutterless"],
+        "js": ["debug.js", "content.js", "settings.js", "addMenuButton.js"],
+        "run_at": "document_start"
     }
-  }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["clutterless.html", "settings.js"],
+      "matches": ["https://www.roblox.com/*"]
+    }
+  ]
+}
